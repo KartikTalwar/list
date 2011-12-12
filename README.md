@@ -161,46 +161,51 @@ All of these classes can be defined by yourself when creating the list by settin
 * List(id, options, values)
 
 ### Parameters
+
 * **id** *(\*required)*  
  Id the element in which the list area should be initialized.
 * **options**  
-Some of the option parameters are required at some times
-	* **valueNames** _(Array, default: null) (*only required if list already contains items before initialization)_   
+  Some of the option parameters are required at some times
+
+	+ **valueNames** _(Array, default: null) (*only required if list already contains items before initialization)_   
 	If the list contains items on initialization does this array
 	have to contain the value names (class names) for the different values of 
 	each list item.
 	    
-	```html
-        <ul class="list">
-            <li>
-                <span class="name">Jonny</span>
-                <span class="city">Sundsvall</span>
-            </li>
-        </ul>
-        
-        var valueNames = ['name', 'city'];
-        ```
-	    
-	* **item** _(String, default: undefined)_  
-	ID to item template element 
+		```html
+		<ul class="list">
+		    <li>
+			<span class="name">Jonny</span>
+			<span class="city">Sundsvall</span>
+		    </li>
+		</ul>
+		```
+
+		```js
+		var valueNames = ['name', 'city'];
+		```
+
+	+ **item** _(String, default: undefined)_  
+	  ID to item template element 
 	
-	* **listClass** _(String, default: "list")_  
-	What is class of the list-container?
+	+ **listClass** _(String, default: "list")_  
+	  What is class of the list-container?
 	
-	* **searchClass** _(String, default: "search")_  
-	What is class of the search field?
+	+ **searchClass** _(String, default: "search")_  
+	  What is class of the search field?
 	
-	* **sortClass** _(String, default: "sort")_  
-	What is class of the sort buttons?
+	+ **sortClass** _(String, default: "sort")_  
+	  What is class of the sort buttons?
 	
-	* **indexAsync** _(Boolean, default: false)_  
-	If there already are items in the list to which the 
-	List.js-script is added, should the indexing be done 
-	in a asynchronous way? Good for large lists (> 500 items).
+	+ **indexAsync** _(Boolean, default: false)_  
+	  If there already are items in the list to which the 
+	  List.js-script is added, should the indexing be done 
+	  in a asynchronous way? Good for large lists (> 500 items).
 	
-	* **maxVisibleItemsCount** _(Int, default: 200)_
-	Defines how many items that should be visible at the same time. This affects 
-	performance.
+	+ **maxVisibleItemsCount** _(Int, default: 200)_
+	  Defines how many items that should be visible at the same time. This affects 
+ 	  performance.
+
 * **values** _(Array of objects) (*optional)_  
 Values to add to the list on initialization.
 
@@ -222,14 +227,14 @@ Contains all template engines available.
 * **add(values)**  
 Adds one or more items to the list. 
 
-```js 
-listObj.add({ name: "Jonny", city: "Stockholm" });
-
-listObj.add([
-    { name: "Gustaf", city: "Sundsvall" }
-    , { name: "Jonas", city: "Berlin" }
-]);
-```
+	```js 
+	listObj.add({ name: "Jonny", city: "Stockholm" });
+	
+	listObj.add([
+	    { name: "Gustaf", city: "Sundsvall" }
+	    , { name: "Jonas", city: "Berlin" }
+	]);
+	```
 
 * **addAsync(values)**  
 Adds one or more items the the list in a asynchronous way, works like regular `.add()`
@@ -266,10 +271,10 @@ Default sort function is found here [http://my.opera.com/GreyWyvern/blog/show.dm
 `options.asc = true` means that you want to sort the list in ascending order. Set 
 `false` for descending.
 
-```js
-listObj.sort('name', { asc: true }); -> Sorts the list in abc-order based on names
-listObj.sort('name', { asc: false }); -> Sorts the list in zxy-order based on names
-```
+	```js
+	listObj.sort('name', { asc: true }); -> Sorts the list in abc-order based on names
+	listObj.sort('name', { asc: false }); -> Sorts the list in zxy-order based on names
+	```
 
 * **search(searchString, columns)**  
 Searches the list 	
@@ -279,21 +284,21 @@ Removes all items from the list
 
 * **filter(filterFunction)**  
 
-```js
-itemsInList = [
-    { id: 1, name: "Jonny" }
-    , { id: 2, name "Gustaf" }
-    , { id: 3, name "Jonas" }
-]
-
-listObj.filter(function(itemValues) {
-   if (itemValues.id > 1) {
-       return true;
-   } else {
-       return false;
-   }
-}); -> Only items with id > 1 are shown in list
-```
+	```js
+	itemsInList = [
+	    { id: 1, name: "Jonny" }
+	    , { id: 2, name "Gustaf" }
+	    , { id: 3, name "Jonas" }
+	]
+	
+	listObj.filter(function(itemValues) {
+	   if (itemValues.id > 1) {
+	       return true;
+	   } else {
+	       return false;
+	   }
+	}); -> Only items with id > 1 are shown in list
+	```
 
 * **size()**  
 Returns the size of the list
@@ -311,17 +316,17 @@ The actual item DOM element
 * **values(newValues)**
 	* newValues _optional_
 	If variable newValues are present the new values replaces the current item values
-	and updates the list. 
-	If newValues are not present, the function returns the current values.
+	and updates the list. If newValues are not present, the function returns the current values.
 	
-	```js
-        item.values() -> { name: "Jonny", age: 24, city: "Umeå" }
-        item.values({
-            age: 25,
-            city: "Stockholm"
-        });
-        item.values() -> { name: "Jonny", age: 25, city: "Stockholm" }
-        ```
+		```js
+		item.values() -> { name: "Jonny", age: 24, city: "Umeå" }
+		item.values({
+		    age: 25,
+		    city: "Stockholm"
+		});
+		item.values() -> { name: "Jonny", age: 25, city: "Stockholm" }
+		```
+        
 	    
 * **show()**
 Shows the item 
